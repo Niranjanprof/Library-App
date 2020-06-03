@@ -5,12 +5,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.transition.TransitionManager;
 
 import com.bumptech.glide.Glide;
 import com.google.android.material.card.MaterialCardView;
@@ -38,12 +40,25 @@ public class bookRecyclerViewAdapter extends RecyclerView.Adapter<bookRecyclerVi
         holder.txtName.setText(books.get(position).getName());
         Glide.with(context).asBitmap().load(books.get(position).getImageurl()).into(holder.imgBook);
 
+        if(books.get(position).isExpanded()){
+            TransitionManager.beginDelayedTransition(holder.parent);
+            holder.expanded.setVisibility(View.VISIBLE);
+            holder.up.setVisibility(View.GONE);
+        }else{
+            TransitionManager.beginDelayedTransition(holder.parent);
+            holder.expanded.setVisibility(View.GONE);
+            holder.up.setVisibility(View.VISIBLE);
+        }
+
         holder.parent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(context, books.get(position).getName(), Toast.LENGTH_SHORT).show();
             }
         });
+
+        holder.txtAuthor.setText(books.get(position).getAuthor());
+        holder.desc.setText(books.get(position).getShortDesc());
     }
 
     @Override
@@ -58,13 +73,37 @@ public class bookRecyclerViewAdapter extends RecyclerView.Adapter<bookRecyclerVi
 
     public class ViewHolder extends RecyclerView.ViewHolder{
         private CardView parent;
-        private ImageView imgBook;
-        private TextView txtName;
+        private ImageView imgBook,down,up;
+        private RelativeLayout expanded;
+        private TextView txtName,desc,txtAuthor;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             parent =itemView.findViewById(R.id.parent);
             imgBook = itemView.findViewById(R.id.imgBook);
             txtName = itemView.findViewById(R.id.txtName);
+
+            down = itemView.findViewById(R.id.downarrow);
+            up = itemView.findViewById(R.id.uparrow);
+            desc = itemView.findViewById(R.id.desc);
+            txtAuthor = itemView.findViewById(R.id.txtAuthor);
+            expanded = itemView.findViewById(R.id.expanded);
+
+            down.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Book book = books.get(getAdapterPosition());
+                    book.setExpanded(!book.isExpanded());
+                    notifyItemChanged(getAdapterPosition());
+                }
+            });
+            up.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Book book = books.get(getAdapterPosition());
+                    book.setExpanded(!book.isExpanded());
+                    notifyItemChanged(getAdapterPosition());
+                }
+            });
         }
     }
 }
