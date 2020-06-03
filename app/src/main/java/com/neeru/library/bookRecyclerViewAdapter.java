@@ -1,6 +1,7 @@
 package com.neeru.library;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,7 +54,8 @@ public class bookRecyclerViewAdapter extends RecyclerView.Adapter<bookRecyclerVi
         holder.parent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, books.get(position).getName(), Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(context,BookActivity.class);
+                context.startActivity(intent);
             }
         });
 
