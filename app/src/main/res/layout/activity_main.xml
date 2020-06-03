@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="223dp"
+        android:layout_height="162dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@mipmap/screenshot" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/app_name"
+        android:padding="10dp"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="@+id/logo"
+        app:layout_constraintStart_toStartOf="@+id/logo"
+        app:layout_constraintTop_toBottomOf="@+id/logo" />
+
+    <Button
+        android:id="@+id/allbooks"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/show_all_books"
+        android:textAllCaps="false"
+        app:layout_constraintEnd_toEndOf="@+id/textView"
+        app:layout_constraintStart_toStartOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <Button
+        android:id="@+id/btnalreadyread"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/already_read"
+        android:textAllCaps="false"
+        app:layout_constraintEnd_toEndOf="@+id/allbooks"
+        app:layout_constraintStart_toStartOf="@+id/allbooks"
+        app:layout_constraintTop_toBottomOf="@+id/allbooks" />
+
+    <Button
+        android:id="@+id/currently"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/currently_reading"
+        android:textAllCaps="false"
+        app:layout_constraintEnd_toEndOf="@+id/btnalreadyread"
+        app:layout_constraintStart_toStartOf="@+id/btnalreadyread"
+        app:layout_constraintTop_toBottomOf="@+id/btnalreadyread" />
+
+    <Button
+        android:layout_marginTop="20dp"
+        android:id="@+id/wishlist"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:text="@string/wishlist"
+        android:textAllCaps="false"
+        app:layout_constraintEnd_toEndOf="@+id/currently"
+        app:layout_constraintStart_toStartOf="@+id/currently"
+        app:layout_constraintTop_toBottomOf="@+id/currently" />
+
+    <Button
+        android:id="@+id/fav"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/favorite"
+        android:textAllCaps="false"
+        app:layout_constraintEnd_toEndOf="@+id/wishlist"
+        app:layout_constraintStart_toStartOf="@+id/wishlist"
+        app:layout_constraintTop_toBottomOf="@+id/wishlist" />
+
+    <Button
+        android:id="@+id/about"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/about"
+        android:textAllCaps="false"
+        app:layout_constraintEnd_toEndOf="@+id/fav"
+        app:layout_constraintStart_toStartOf="@+id/fav"
+        app:layout_constraintTop_toBottomOf="@+id/fav" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/developer"
+        android:layout_margin="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

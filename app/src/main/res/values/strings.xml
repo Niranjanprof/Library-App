@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Library</string>
+    <string name="show_all_books">Show All Books</string>
+    <string name="already_read">Already Read</string>
+    <string name="currently_reading">Currently Reading</string>
+    <string name="wishlist">Wishlist</string>
+    <string name="favorite">Favorite</string>
+    <string name="about">About</string>
+    <string name="developer">Developed By Niranjan B</string>
+    <string name="bookname">BookName</string>
+</resources>
