@@ -55,6 +55,7 @@ public class bookRecyclerViewAdapter extends RecyclerView.Adapter<bookRecyclerVi
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context,BookActivity.class);
+                intent.putExtra("bookId",books.get(position).getId());
                 context.startActivity(intent);
             }
         });
