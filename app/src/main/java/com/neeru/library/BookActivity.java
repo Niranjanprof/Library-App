@@ -4,9 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 
@@ -36,7 +38,129 @@ public class BookActivity extends AppCompatActivity {
             Book book = Utils.getInstance().getBookById(bookId);
             if(book != null){
                 setData(book);
+
+                handleAlreadyread(book);
+                handlewishlist(book);
+                handleCurrentlist(book);
+                handleFav(book);
             }
+        }
+    }
+
+    private void handleFav(final Book book) {
+        ArrayList<Book> favlist = Utils.getInstance().getFav();
+        boolean existingInFavlist = false;
+
+        for (Book b:favlist
+        ) {
+            if(b.getId() == book.getId()){
+                existingInFavlist= true;
+            }
+        }
+        if(existingInFavlist){
+            btnFavorite.setEnabled(false);
+        }else{
+            btnFavorite.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (Utils.getInstance().addToFavlist(book)){
+                        Toast.makeText(BookActivity.this, "Successfully Added", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(BookActivity.this,FavActivity.class);
+                        startActivity(intent);
+                    }
+                    else{
+                        Toast.makeText(BookActivity.this, "Something wrong happened Try Again", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+        }
+    }
+
+    private void handleCurrentlist(final Book book) {
+        ArrayList<Book> currlist = Utils.getInstance().getCurrentlyreadinglist();
+        boolean existingInCurrlist = false;
+
+        for (Book b:currlist
+        ) {
+            if(b.getId() == book.getId()){
+                existingInCurrlist= true;
+            }
+        }
+        if(existingInCurrlist){
+            btnCurrentlyReading.setEnabled(false);
+        }else{
+            btnCurrentlyReading.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (Utils.getInstance().addToCurrlist(book)){
+                        Toast.makeText(BookActivity.this, "Successfully Added", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(BookActivity.this,CurrentlyActivity.class);
+                        startActivity(intent);
+                    }
+                    else{
+                        Toast.makeText(BookActivity.this, "Something wrong happened Try Again", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+        }
+    }
+
+    private void handlewishlist(final Book book) {
+        ArrayList<Book> wishlist = Utils.getInstance().getWishlist();
+        boolean existingInWishlist = false;
+
+        for (Book b:wishlist
+        ) {
+            if(b.getId() == book.getId()){
+                existingInWishlist= true;
+            }
+        }
+        if(existingInWishlist){
+            btnWishlist.setEnabled(false);
+        }else{
+            btnWishlist.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (Utils.getInstance().addToWishlist(book)){
+                        Toast.makeText(BookActivity.this, "Successfully Added", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(BookActivity.this,WishlistActivity.class);
+                        startActivity(intent);
+                    }
+                    else{
+                        Toast.makeText(BookActivity.this, "Something wrong happened Try Again", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+        }
+
+    }
+
+    private void handleAlreadyread(final Book book) {
+        ArrayList<Book> alreadyBooks = Utils.getInstance().getAlreadyReadBooks();
+        boolean existingAlreadyReadBooks = false;
+
+        for (Book b:alreadyBooks
+             ) {
+            if(b.getId() == book.getId()){
+                existingAlreadyReadBooks= true;
+            }
+        }
+        if(existingAlreadyReadBooks){
+            btnAlreadyRead.setEnabled(false);
+        }else{
+            btnAlreadyRead.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (Utils.getInstance().addToAlreadyRead(book)){
+                        Toast.makeText(BookActivity.this, "Successfully Added", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(BookActivity.this,AlreadyReadBookActivity.class);
+                        startActivity(intent);
+                    }
+                    else{
+                        Toast.makeText(BookActivity.this, "Something wrong happened Try Again", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
         }
     }
 
@@ -50,8 +174,8 @@ public class BookActivity extends AppCompatActivity {
 
     private void initViews() {
         btnAlreadyRead = findViewById(R.id.alreadyread);
-        btnWishlist = findViewById(R.id.wishlist);
-        btnCurrentlyReading = findViewById(R.id.currentlyreading);
+        btnWishlist = findViewById(R.id.wanttoread);
+        btnCurrentlyReading = findViewById(R.id.btncurrentlyreading);
         btnFavorite = findViewById(R.id.fav);
         bookImage = findViewById(R.id.coverImageView);
         name = findViewById(R.id.namefield);

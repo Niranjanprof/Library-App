@@ -9,6 +9,7 @@ public class Utils {
     private static ArrayList<Book> alreadyReadBooks;
     private static ArrayList<Book> wishlist;
     private static ArrayList<Book> fav;
+    private static ArrayList<Book> currentlyreadinglist;
 
     private Utils() {
         if(null == allbooks){
@@ -23,6 +24,9 @@ public class Utils {
         }
         if(null == fav){
             fav = new ArrayList<>();
+        }
+        if(null == currentlyreadinglist){
+            currentlyreadinglist = new ArrayList<>();
         }
     }
 
@@ -68,6 +72,10 @@ public class Utils {
         return fav;
     }
 
+    public static ArrayList<Book> getCurrentlyreadinglist() {
+        return currentlyreadinglist;
+    }
+
     public Book getBookById(int id){
         for (Book b:allbooks
              ) {
@@ -76,5 +84,33 @@ public class Utils {
             }
         }
         return null;
+    }
+    public boolean addToAlreadyRead(Book book){
+    return alreadyReadBooks.add(book);
+    }
+
+    public boolean addToWishlist(Book book) {
+        return wishlist.add(book);
+    }
+
+    public boolean addToFavlist(Book book) {
+        return fav.add(book);
+    }
+
+    public boolean addToCurrlist(Book book) {
+        return currentlyreadinglist.add(book);
+    }
+
+    public boolean removeFromAlreadyRead(Book book){
+        return alreadyReadBooks.remove(book);
+    }
+    public boolean removeFromWantToRead(Book book){
+        return wishlist.remove(book);
+    }
+    public boolean removeFromCurrentlyRead(Book book){
+        return currentlyreadinglist.remove(book);
+    }
+    public boolean removeFromFav(Book book){
+        return fav.remove(book);
     }
 }
