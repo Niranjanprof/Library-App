@@ -24,7 +24,7 @@ public class WishlistActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        adapter.setBooks(Utils.getWishlist());
+        adapter.setBooks(Utils.getInstance(this).getWishlist());
     }
 
     @Override

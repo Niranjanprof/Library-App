@@ -18,7 +18,7 @@ public class FavActivity extends AppCompatActivity {
         bookRecyclerViewAdapter adapter = new bookRecyclerViewAdapter(this,"");
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        adapter.setBooks(Utils.getFav());
+        adapter.setBooks(Utils.getInstance(this).getFav());
     }
 
     @Override

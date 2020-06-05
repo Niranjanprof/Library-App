@@ -35,7 +35,7 @@ public class BookActivity extends AppCompatActivity {
             bookId = intent.getIntExtra("bookId",-1);
         }
         if(bookId != -1){
-            Book book = Utils.getInstance().getBookById(bookId);
+            Book book = Utils.getInstance(this).getBookById(bookId);
             if(book != null){
                 setData(book);
 
@@ -48,7 +48,7 @@ public class BookActivity extends AppCompatActivity {
     }
 
     private void handleFav(final Book book) {
-        ArrayList<Book> favlist = Utils.getInstance().getFav();
+        ArrayList<Book> favlist = Utils.getInstance(this).getFav();
         boolean existingInFavlist = false;
 
         for (Book b:favlist
@@ -63,7 +63,7 @@ public class BookActivity extends AppCompatActivity {
             btnFavorite.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (Utils.getInstance().addToFavlist(book)){
+                    if (Utils.getInstance(BookActivity.this).addToFavlist(book)){
                         Toast.makeText(BookActivity.this, "Successfully Added", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(BookActivity.this,FavActivity.class);
                         startActivity(intent);
@@ -77,7 +77,7 @@ public class BookActivity extends AppCompatActivity {
     }
 
     private void handleCurrentlist(final Book book) {
-        ArrayList<Book> currlist = Utils.getInstance().getCurrentlyreadinglist();
+        ArrayList<Book> currlist = Utils.getInstance(this).getCurrentlyreadinglist();
         boolean existingInCurrlist = false;
 
         for (Book b:currlist
@@ -92,7 +92,7 @@ public class BookActivity extends AppCompatActivity {
             btnCurrentlyReading.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (Utils.getInstance().addToCurrlist(book)){
+                    if (Utils.getInstance(BookActivity.this).addToCurrlist(book)){
                         Toast.makeText(BookActivity.this, "Successfully Added", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(BookActivity.this,CurrentlyActivity.class);
                         startActivity(intent);
@@ -106,7 +106,7 @@ public class BookActivity extends AppCompatActivity {
     }
 
     private void handlewishlist(final Book book) {
-        ArrayList<Book> wishlist = Utils.getInstance().getWishlist();
+        ArrayList<Book> wishlist = Utils.getInstance(this).getWishlist();
         boolean existingInWishlist = false;
 
         for (Book b:wishlist
@@ -121,7 +121,7 @@ public class BookActivity extends AppCompatActivity {
             btnWishlist.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (Utils.getInstance().addToWishlist(book)){
+                    if (Utils.getInstance(BookActivity.this).addToWishlist(book)){
                         Toast.makeText(BookActivity.this, "Successfully Added", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(BookActivity.this,WishlistActivity.class);
                         startActivity(intent);
@@ -136,7 +136,7 @@ public class BookActivity extends AppCompatActivity {
     }
 
     private void handleAlreadyread(final Book book) {
-        ArrayList<Book> alreadyBooks = Utils.getInstance().getAlreadyReadBooks();
+        ArrayList<Book> alreadyBooks = Utils.getInstance(this).getAlreadyReadBooks();
         boolean existingAlreadyReadBooks = false;
 
         for (Book b:alreadyBooks
@@ -151,7 +151,7 @@ public class BookActivity extends AppCompatActivity {
             btnAlreadyRead.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (Utils.getInstance().addToAlreadyRead(book)){
+                    if (Utils.getInstance(BookActivity.this).addToAlreadyRead(book)){
                         Toast.makeText(BookActivity.this, "Successfully Added", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(BookActivity.this,AlreadyReadBookActivity.class);
                         startActivity(intent);

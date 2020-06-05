@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        Utils.getInstance();
+        Utils.getInstance(this);
         btnAlreadyRead.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

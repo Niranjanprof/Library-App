@@ -3,6 +3,7 @@ package com.neeru.library;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.text.format.Time;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +23,7 @@ import com.bumptech.glide.util.Util;
 import com.google.android.material.card.MaterialCardView;
 
 import java.util.ArrayList;
+import java.util.Timer;
 
 public class bookRecyclerViewAdapter extends RecyclerView.Adapter<bookRecyclerViewAdapter.ViewHolder> {
 
@@ -61,7 +63,7 @@ public class bookRecyclerViewAdapter extends RecyclerView.Adapter<bookRecyclerVi
                         builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                if(Utils.getInstance().removeFromAlreadyRead(books.get(position))){
+                                if(Utils.getInstance(context).removeFromAlreadyRead(books.get(position))){
                                     Toast.makeText(context,"Removed", Toast.LENGTH_SHORT).show();
                                     notifyDataSetChanged();
                                 }else{
@@ -87,7 +89,7 @@ public class bookRecyclerViewAdapter extends RecyclerView.Adapter<bookRecyclerVi
                         builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                if(Utils.getInstance().removeFromCurrentlyRead(books.get(position))){
+                                if(Utils.getInstance(context).removeFromCurrentlyRead(books.get(position))){
                                     Toast.makeText(context,"Removed", Toast.LENGTH_SHORT).show();
                                     notifyDataSetChanged();
                                 }else{
@@ -113,7 +115,7 @@ public class bookRecyclerViewAdapter extends RecyclerView.Adapter<bookRecyclerVi
                         builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                if(Utils.getInstance().removeFromWantToRead(books.get(position))){
+                                if(Utils.getInstance(context).removeFromWantToRead(books.get(position))){
                                     Toast.makeText(context,"Removed", Toast.LENGTH_SHORT).show();
                                     notifyDataSetChanged();
                                 }else{
@@ -140,7 +142,7 @@ public class bookRecyclerViewAdapter extends RecyclerView.Adapter<bookRecyclerVi
                         builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                if(Utils.getInstance().removeFromFav(books.get(position))){
+                                if(Utils.getInstance(context).removeFromFav(books.get(position))){
                                     Toast.makeText(context,"Removed", Toast.LENGTH_SHORT).show();
                                     notifyDataSetChanged();
                                 }else{
